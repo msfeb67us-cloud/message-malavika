@@ -66,6 +66,66 @@
             }
         }
 
+        /* ---- Cute dog scene ---- */
+        .dog-bob {
+            animation: dogBob 2.5s ease-in-out infinite;
+            transform-origin: bottom center;
+        }
+        @keyframes dogBob {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50%      { transform: translateY(-8px) rotate(-1.5deg); }
+        }
+
+        /* Wagging tail */
+        .dog-tail {
+            transform-origin: 150px 130px;
+            animation: tailWag 0.4s ease-in-out infinite alternate;
+        }
+        @keyframes tailWag {
+            0%   { transform: rotate(-12deg); }
+            100% { transform: rotate(18deg); }
+        }
+
+        /* Blinking eyes */
+        .dog-eye {
+            transform-origin: center;
+            animation: blink 4s ease-in-out infinite;
+        }
+        @keyframes blink {
+            0%, 92%, 100% { transform: scaleY(1); }
+            96%           { transform: scaleY(0.1); }
+        }
+
+        /* Speech bubble */
+        .speech-bubble {
+            position: relative;
+            background: #ffffff;
+            color: #E60023;
+            font-weight: 700;
+            font-size: 1.25rem;
+            padding: 12px 22px;
+            border-radius: 22px;
+            margin-bottom: 18px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+            white-space: nowrap;
+            animation: bubblePop 2.5s ease-in-out infinite;
+        }
+        .bubble-tail {
+            position: absolute;
+            bottom: -9px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 12px solid #ffffff;
+        }
+        @keyframes bubblePop {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50%      { transform: translateY(-4px) scale(1.04); }
+        }
+
         /* Custom scrollbar to match Pinterest style for the right pane */
         .scrollable-pane::-webkit-scrollbar {
             width: 8px;
@@ -85,9 +145,30 @@
     <main class="card-reveal w-full max-w-5xl bg-white rounded-[32px] shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex flex-col md:flex-row overflow-hidden min-h-[600px]">
         
         <!-- Left Side: Aesthetic Pin Image (Mesh Gradient) -->
-        <div class="mesh-gradient w-full md:w-[45%] h-[400px] md:h-auto relative">
+        <div class="mesh-gradient w-full md:w-[45%] h-[400px] md:h-auto relative flex items-center justify-center">
             <!-- Subtle overlay to make it look like a real image -->
             <div class="absolute inset-0 bg-white/10 mix-blend-overlay"></div>
+
+            <!-- Cute animated dog with a speech bubble -->
+            <div class="dog-scene relative flex flex-col items-center">
+                <!-- Speech bubble -->
+                <div class="speech-bubble font-playfair">
+                    You're amazing! 
+                    <span class="bubble-tail"></span>
+                </div>
+
+                <!-- The real Chippy the Dog GIF from Giphy -->
+                <div class="dog-bob">
+                    <img
+                        src="https://media.giphy.com/media/3o6fJ6zHaMnuHgxWuY/giphy.gif"
+                        alt="Cute dog saying you are amazing"
+                        width="180"
+                        height="180"
+                        class="rounded-3xl shadow-lg bg-white/40 p-2"
+                    />
+                </div>
+            </div>
+
             <!-- Decorative icon in the corner just for realism -->
             <div class="absolute bottom-4 left-4 bg-white/30 backdrop-blur-sm rounded-full p-2">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white drop-shadow-md"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
